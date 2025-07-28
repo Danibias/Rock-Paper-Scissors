@@ -19,10 +19,16 @@ If the player chose paper and the computer chose rock, the player wins.
 
 If the player chose scissors and the computer chose paper, the player wins.
 
-Otherwise, the computer wins.
+ELSE the computer wins.
 
 Tell the player who won the round.
 
-(Optional) Ask the player if they want to play again and repeat the process if they say yes.
+The game is over after 5 rounds.
+
+If the user wins 3 or more rounds , the player wins.
+
+ELSE the computer wins and display: Game Over!
+
+Reset the game.
 
 
