@@ -1,2 +1,28 @@
 # Rock-Paper-Scissors
 An Interactive browser game
+
+Tell the player they are playing Rock–Paper–Scissors against the computer.
+
+Ask the player to choose either rock, paper, or scissors.
+
+Make the computer pick a choice at random between rock, paper, or scissors.
+
+Show the player what the computer chose.
+
+Compare the player’s choice with the computer’s choice:
+
+If both choices are the same, it’s a tie.
+
+If the player chose rock and the computer chose scissors, the player wins.
+
+If the player chose paper and the computer chose rock, the player wins.
+
+If the player chose scissors and the computer chose paper, the player wins.
+
+Otherwise, the computer wins.
+
+Tell the player who won the round.
+
+(Optional) Ask the player if they want to play again and repeat the process if they say yes.
+
+
