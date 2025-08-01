@@ -5,8 +5,6 @@ Tell the player they are playing Rock–Paper–Scissors against the computer.
 
 Ask the player to choose either rock, paper, or scissors.
 
-Make the computer pick a choice at random between rock, paper, or scissors.
-
 Show the player what the computer chose.
 
 Compare the player’s choice with the computer’s choice:
