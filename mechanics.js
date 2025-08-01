@@ -1,27 +1,65 @@
+//keep track of the players score
+let humanScore = 0;
+let computerScore = 0;
+
 // Make the computer pick a choice at random between rock, paper, or scissors.
-
-const getComputerChoice = () => {
-
+const getComputerChoice = () => 
+{
     const randomNum = Math.floor(Math.random() * 3)
 
-    switch(randomNum) {
-
+    switch(randomNum) 
+    {
         case 0:
-            return console.log("rock");
+        return "rock";
+
         case 1:
-            return console.log("paper");
+        return "paper";
+
         case 2: 
-            return console.log("scissors");
-        default:
-            return console.log("rock");  
+        return "scissors";
     }      
 }
 
-const getHumanChoice = () => {
-
+// Ask the player to choose either rock, paper, or scissors.
+const getHumanChoice = () => 
+{
     const choice = prompt("Let's Play! Choose: rock, paper or scissors")
-    return choice.toLowerCase();
+    return choice;
 
 }
 
-console.log(getHumanChoice());
+// play a single round
+const playRound = (humanChoice, computerChoice) => 
+{
+    // Make humanChoice parameter case-insensitive
+    humanChoice = humanChoice.toLowerCase()
+
+    if (humanChoice === computerChoice) {
+        alert("It's a tie");
+    } 
+    else if (
+        (humanChoice === "rock" && computerChoice === "scissors") ||
+        (humanChoice === "paper" && computerChoice === "rock") ||
+        (humanChoice === "scissors" && computerChoice === "paper")
+    ) {
+        alert(`You win! ${humanChoice} beats ${computerChoice}`);
+        humanScore++;
+    } 
+    else {
+        alert(`You lose! ${computerChoice} beats ${humanChoice}`);
+        computerScore++;
+    }
+};
+
+
+const humanSelection = getHumanChoice();   
+const computerSelection = getComputerChoice(); 
+
+alert(`Computer chose: ${computerSelection}`);
+
+playRound(humanSelection, computerSelection);
+
+alert(`Human: ${humanScore} Computer: ${computerScore}`);
+
+
+
