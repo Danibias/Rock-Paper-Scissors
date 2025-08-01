@@ -14,5 +14,14 @@ const getComputerChoice = () => {
             return console.log("scissors");
         default:
             return console.log("rock");  
-    }
+    }      
 }
+
+const getHumanChoice = () => {
+
+    const choice = prompt("Let's Play! Choose: rock, paper or scissors")
+    return choice.toLowerCase();
+
+}
+
+console.log(getHumanChoice());
