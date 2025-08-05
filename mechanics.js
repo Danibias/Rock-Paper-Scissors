@@ -2,6 +2,9 @@
 let humanScore = 0;
 let computerScore = 0;
 
+// Rounds to play
+let round = 0;
+
 // Make the computer pick a choice at random between rock, paper, or scissors.
 const getComputerChoice = () => 
 {
@@ -23,7 +26,7 @@ const getComputerChoice = () =>
 // Ask the player to choose either rock, paper, or scissors.
 const getHumanChoice = () => 
 {
-    const choice = prompt("Let's Play! Choose: rock, paper or scissors")
+    const choice = prompt("Let's Play! Choose: rock, paper or scissors");
     return choice;
 
 }
@@ -52,14 +55,44 @@ const playRound = (humanChoice, computerChoice) =>
 };
 
 
-const humanSelection = getHumanChoice();   
-const computerSelection = getComputerChoice(); 
 
-alert(`Computer chose: ${computerSelection}`);
+const playGame = () => {
 
-playRound(humanSelection, computerSelection);
+    if( round < 5 ) {
 
-alert(`Human: ${humanScore} Computer: ${computerScore}`);
+        console.log(`Round ${ round + 1 }`);
+
+        const humanSelection = getHumanChoice();   
+        const computerSelection = getComputerChoice();
+        alert(`Computer chose: ${computerSelection}`);
+        console.log(`Human: ${humanScore} Computer: ${computerScore}`);
+        
+
+        playRound(humanSelection, computerSelection);
+        round++;
+
+        playGame();
+    }
+    else {
+        // Game Over
+        console.log(" Game Over ");
+        
+        if(humanScore > computerScore) {
+            console.log(` You win the game! Human: ${humanScore} Computer: ${computerScore} `);
+        } 
+        else if (computerScore > humanScore) {
+            console.log(" You lose the game ");
+        }
+        else {
+            console.log(" It is a Tie! ");
+        }
+    }
+}
+
+playGame()
+
+
+
 
 
 
