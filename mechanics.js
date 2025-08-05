@@ -75,16 +75,16 @@ const playGame = () => {
     }
     else {
         // Game Over
-        console.log(" Game Over ");
+        alert(" Game Over ");
         
         if(humanScore > computerScore) {
-            console.log(` You win the game! Human: ${humanScore} Computer: ${computerScore} `);
+            alert(" You win the game! ");
         } 
         else if (computerScore > humanScore) {
-            console.log(" You lose the game ");
+            alert(" You lose the game ");
         }
         else {
-            console.log(" It is a Tie! ");
+            alert(" It is a Tie! ");
         }
     }
 }
