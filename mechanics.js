@@ -75,7 +75,7 @@ const playGame = () => {
     }
     else {
         // Game Over
-        console.log(" Game Over ");
+        alert(" Game Over ");
         
         if(humanScore > computerScore) {
             alert(" You win the game! ");
