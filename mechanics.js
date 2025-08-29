@@ -2,9 +2,6 @@
 let humanScore = 0;
 let computerScore = 0;
 
-// Rounds to play
-let round = 0;
-
 // Make the computer pick a choice at random between rock, paper, or scissors.
 const getComputerChoice = () => 
 {
@@ -12,87 +9,99 @@ const getComputerChoice = () =>
 
     switch(randomNum) 
     {
-        case 0:
-        return "rock";
+        case 0:return "Rock";
 
-        case 1:
-        return "paper";
+        case 1:return "Paper";
 
-        case 2: 
-        return "scissors";
+        case 2:return "Scissors";
     }      
 }
+// Update the score for each round
+const updateScore = () => score.textContent = `User: ${humanScore} Computer: ${computerScore}`;
 
-// Ask the player to choose either rock, paper, or scissors.
-const getHumanChoice = () => 
-{
-    const choice = prompt("Let's Play! Choose: rock, paper or scissors");
-    return choice;
+// Reset the game
+const reset = document.createElement("button");
+reset.textContent = "Reset";
+reset.disabled = true;
 
+reset.addEventListener("click", () => {
+    humanScore = 0;
+    computerScore = 0;
+    updateScore();
+    result.textContent = "Let's Play!";
+    rock.disabled = false;
+    paper.disabled = false;
+    scissors.disabled = false;
+    reset.disabled = true;
+});
+
+
+
+//Checks who got 5 points and finish the game
+const checkGameOver = () => {
+    if (humanScore === 5 || computerScore === 5) 
+    {
+        const winner = humanScore === 5 ? "You Win!" : "Computer Wins!";
+        result.textContent = `Game Over! ${winner}`;
+        rock.disabled = true;
+        paper.disabled = true;
+        scissors.disabled = true;
+        reset.disabled = false;
+    }
 }
 
 // play a single round
 const playRound = (humanChoice, computerChoice) => 
 {
-    // Make humanChoice parameter case-insensitive
-    humanChoice = humanChoice.toLowerCase()
-
     if (humanChoice === computerChoice) {
-        alert("It's a tie");
+        result.textContent = "It's a tie!"
+        updateScore();
+        
     } 
     else if (
-        (humanChoice === "rock" && computerChoice === "scissors") ||
-        (humanChoice === "paper" && computerChoice === "rock") ||
-        (humanChoice === "scissors" && computerChoice === "paper")
+        (humanChoice === "Rock" && computerChoice === "Scissors") ||
+        (humanChoice === "Paper" && computerChoice === "Rock") ||
+        (humanChoice === "Scissors" && computerChoice === "Paper")
     ) {
-        alert(`You win! ${humanChoice} beats ${computerChoice}`);
-        humanScore++;
+        result.textContent = `You win! ${humanChoice} beats ${computerChoice}`
+        humanScore++
+        updateScore();
+        checkGameOver();
     } 
     else {
-        alert(`You lose! ${computerChoice} beats ${humanChoice}`);
-        computerScore++;
+        result.textContent = `You lose! ${computerChoice} beats ${humanChoice}`
+        computerScore++
+        updateScore();
+        checkGameOver();
     }
 };
 
+const rock = document.createElement("button");
+rock.textContent = "Rock"
+rock.addEventListener("click", () => {
+    playRound("Rock", getComputerChoice());
+})
 
+const paper = document.createElement("button");
+paper.textContent = "Paper"
+paper.addEventListener("click", () => {
+    playRound("Paper", getComputerChoice());
+})
 
-const playGame = () => {
+const scissors = document.createElement("button");
+scissors.textContent = "Scissors"
+scissors.addEventListener("click", () => {
+    playRound("Scissors", getComputerChoice());
+})
 
-    if( round < 5 ) {
+document.body.append(rock, paper, scissors);
 
-        console.log(`Round ${ round + 1 }`);
+const result = document.createElement("div");
+result.textContent = "Let's Play!"
+document.body.appendChild(result)
 
-        const humanSelection = getHumanChoice();   
-        const computerSelection = getComputerChoice();
-        alert(`Computer chose: ${computerSelection}`);
-        console.log(`Human: ${humanScore} Computer: ${computerScore}`);
-        
+const score = document.createElement("p")
+score.textContent = `User ${humanScore} Computer: ${computerScore}`
+result.insertAdjacentElement("afterend",score);
 
-        playRound(humanSelection, computerSelection);
-        round++;
-
-        playGame();
-    }
-    else {
-        // Game Over
-        alert(" Game Over ");
-        
-        if(humanScore > computerScore) {
-            alert(" You win the game! ");
-        } 
-        else if (computerScore > humanScore) {
-            alert(" You lose the game ");
-        }
-        else {
-            alert(" It is a Tie! ");
-        }
-    }
-}
-
-playGame()
-
-
-
-
-
-
+document.body.appendChild(reset);
