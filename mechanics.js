@@ -42,7 +42,7 @@ const checkGameOver = () => {
     if (humanScore === 5 || computerScore === 5) 
     {
         const winner = humanScore === 5 ? "You Win!" : "Computer Wins!";
-        result.textContent = `Game Over! ${winner}`;
+        result.innerHTML = `Game Over - ${winner}`;
         rock.disabled = true;
         paper.disabled = true;
         scissors.disabled = true;
@@ -63,13 +63,13 @@ const playRound = (humanChoice, computerChoice) =>
         (humanChoice === "Paper" && computerChoice === "Rock") ||
         (humanChoice === "Scissors" && computerChoice === "Paper")
     ) {
-        result.textContent = `You win! ${humanChoice} beats ${computerChoice}`
+        result.innerHTML = `You win! ${humanChoice} beats ${computerChoice}`
         humanScore++
         updateScore();
         checkGameOver();
     } 
     else {
-        result.textContent = `You lose! ${computerChoice} beats ${humanChoice}`
+        result.innerHTML = `You lose! ${computerChoice} beats ${humanChoice}`
         computerScore++
         updateScore();
         checkGameOver();
